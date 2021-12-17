@@ -13,6 +13,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
         <Stack.Screen
           name="FlatEmails"
           component={FlatEmails}
@@ -24,6 +25,7 @@ export default function App() {
           component={Email}
           options={{ headerShown: false }}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

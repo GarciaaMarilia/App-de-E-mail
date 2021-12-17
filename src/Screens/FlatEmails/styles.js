@@ -2,35 +2,41 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: 100,
         width: '95%',
-    },
-
-    image: {
-        width: 60,
-        height: 60,
-        marginRight: 15,
-        borderRadius: 100,
-        paddingHorizontal: 20,
+        height: 100,
+        flex: 1,
     },
 
     header: {
         flexDirection: 'row',
-        padding: 10
+        padding: 10,
     },
 
-    time: {
-        flex: 1,
-        color: '#fff',
-        textAlign: 'right',
+    image: {
+        paddingHorizontal: 20,
+        borderRadius: 100,
+        marginRight: 15,
+        height: 60,
+        width: 60
     },
 
+    title: {
+        flexDirection: 'column'
+    },
 
     to: {
         fontWeight: 'bold',
         textAlign: 'left',
         color: '#fff'
-    }
+    },
 
+    time: {
+        textAlign: 'right',
+        color: '#fff',
+        flex: 1
+    },
+
+    flatlist: {
+        marginTop: 40
+    }
 });

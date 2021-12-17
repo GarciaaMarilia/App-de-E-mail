@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View, Text, StatusBar } from 'react-native';
-
-import { LinearGradient } from 'expo-linear-gradient';
-import { ListDivider } from '../../Components/ListDivider/ListDivider';
+import
+React,
+{
+    useEffect,
+    useState
+} from 'react';
+import {
+    Image,
+    View,
+    Text,
+    StatusBar
+} from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
-
+import { WebView } from 'react-native-webview';
 import { styles } from './styles';
+import { Appbar } from 'react-native-paper';
 
-export default function Email({ route }) {
+
+export default function Email({ route, navigation }) {
 
     const { id } = route.params;
 
@@ -24,27 +33,45 @@ export default function Email({ route }) {
     }, []);
 
     return (
-        <LinearGradient
-            colors={['#1C1C1C', '#363636']}
-            style={{ flex: 1 }}
-        >
-            <View style={styles.container}>
-                <StatusBar style="auto" />
-                <View>
-                    <Text style={styles.box} >Caixa de Entrada</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.title}>{email.tittle}</Text>
-                        <AntDesign name={email.star ? "star" : "staro"} size={20} color="white" />
-                    </View>
-                    <View style={styles.header}>
-                        <Image style={styles.image} source={{ uri: email.picture }} />
-                        <View style={{ flexDirection: 'column' }}>
-                            <Text style={styles.to}> {email.from} </Text>
-                        </View>
-                        <Text style={styles.time}>{email.time}</Text>
-                    </View>
+        <View style={styles.container}>
+
+            <StatusBar style="auto" />
+
+            <Appbar.Header style={styles.appbar}>
+                <Appbar.BackAction onPress={() => navigation.navigate("FlatEmails")} />
+                <Text style={styles.box} >Caixa de Entrada</Text>
+            </Appbar.Header>
+
+            <View style={styles.appbar}>
+
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                }}
+                >
+                    <Text style={styles.title}>{email.tittle}</Text>
+                    <AntDesign
+                        name={email.star ? "star" : "staro"}
+                        size={20}
+                        color="white"
+                    />
                 </View>
+                <View style={styles.header}>
+                    <Image
+                        style={styles.image}
+                        source={{ uri: email.picture }}
+                    />
+                    <Text style={styles.to}> {email.from} </Text>
+                    <Text style={styles.time}>{email.time}</Text>
+                </View>
+
             </View>
-        </LinearGradient>
+
+            <WebView
+                style={styles.webview}
+                source={{ html: `<div style="font-size: 50px;">${email.body}</div>` }}
+            />
+
+        </View>
     );
 }

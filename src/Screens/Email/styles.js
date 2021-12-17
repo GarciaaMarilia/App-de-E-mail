@@ -2,15 +2,25 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
 
-    image: {
-        width: 60,
-        height: 60,
-        marginRight: 15,
-        borderRadius: 100,
-        paddingHorizontal: 20,
+    appbar: {
+        backgroundColor: '#363636'
+    },
+
+    box: {
+        fontWeight: 'bold',
+        color: '#FFFAFA',
+        fontSize: 24,
+        margin: 12
+    },
+
+    title: {
+        fontWeight: 'bold',
+        color: '#FFFAFA',
+        fontSize: 20,
+        margin: 12
     },
 
     header: {
@@ -18,29 +28,30 @@ export const styles = StyleSheet.create({
         padding: 10
     },
 
+    image: {
+        paddingHorizontal: 20,
+        borderRadius: 100,
+        marginRight: 15,
+        height: 60,
+        width: 60
+    },
+
+
     time: {
-        flex: 1,
-        color: '#fff',
         textAlign: 'right',
+        color: '#fff',
+        flex: 1
     },
 
     to: {
         fontWeight: 'bold',
         textAlign: 'left',
-        color: '#fff'
+        color: '#fff',
+        fontSize: 16
     },
 
-    box: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#FFFAFA',
-        margin: 12
-      },
-  
-      title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#FFFAFA',
-        margin: 12
-      },
+    webview: {
+        backgroundColor: '#DCDCDC',
+        flex: 1
+    },
 });
