@@ -36,6 +36,11 @@ export const styles = StyleSheet.create({
         width: 60
     },
 
+    from: {
+        flexDirection: 'column',
+        textAlign: 'center',
+        flex: 1
+    },
 
     time: {
         textAlign: 'right',
@@ -45,7 +50,6 @@ export const styles = StyleSheet.create({
 
     to: {
         fontWeight: 'bold',
-        textAlign: 'left',
         color: '#fff',
         fontSize: 16
     },

@@ -57,12 +57,21 @@ export default function Email({ route, navigation }) {
                     />
                 </View>
                 <View style={styles.header}>
+
                     <Image
                         style={styles.image}
                         source={{ uri: email.picture }}
                     />
-                    <Text style={styles.to}> {email.from} </Text>
+
+                    <View style={styles.from}>
+
+                        <Text style={styles.to}> {email.from}</Text>
+                        <Text style={styles.to}>{email.to}</Text>
+
+                    </View>
+
                     <Text style={styles.time}>{email.time}</Text>
+
                 </View>
 
             </View>
@@ -72,6 +81,6 @@ export default function Email({ route, navigation }) {
                 source={{ html: `<div style="font-size: 50px;">${email.body}</div>` }}
             />
 
-        </View>
+        </View >
     );
 }
