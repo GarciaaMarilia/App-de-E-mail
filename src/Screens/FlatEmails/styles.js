@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         textAlign: 'right',
     },
 
+
     to: {
         fontWeight: 'bold',
         textAlign: 'left',

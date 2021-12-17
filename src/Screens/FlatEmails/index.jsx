@@ -8,14 +8,21 @@ import {
     FlatList,
     Image,
     View,
-    Text
+    Text,
+    TouchableOpacity
 } from 'react-native';
 
 import { ListDivider } from '../../Components/ListDivider/ListDivider';
 
+import { LinearGradient } from 'expo-linear-gradient';
+
 import { styles } from './styles';
 
-export default function FlatEmails() {
+import { AntDesign } from '@expo/vector-icons';
+
+
+
+export default function FlatEmails({ navigation }) {
 
     const [emails, setEmails] = useState([]);
 
@@ -30,32 +37,40 @@ export default function FlatEmails() {
 
     function renderItem({ item }) {
         return (
-            <View style={styles.container}>
-                <View>
-                    <View style={styles.header}>
-                        <Image style={styles.image} source={{ uri: item.picture }} />
-                        <View style={{ flexDirection: 'column' }}>
-                            <Text style={styles.to}> {item.to} </Text>
-                            <Text style={styles.to}> {item.tittle} </Text>
+            <TouchableOpacity style={styles.email} onPress={() => navigation.navigate("Email", { id: item.id },)}>
+                <View style={styles.container}>
+                    <View>
+                        <View style={styles.header}>
+                            <Image style={styles.image} source={{ uri: item.picture }} />
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={styles.to}> {item.to} </Text>
+                                <Text style={styles.to}> {item.tittle} </Text>
+                            </View>
+                            <AntDesign name={emails.star ? "star" : "staro"} size={20} color="white" />
+                            <Text style={styles.time}>{item.time}</Text>
                         </View>
-                        <Text style={styles.time}>{item.time}</Text>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 
     return (
-        <View style={{ marginTop: 30 }}>
-            <FlatList
-                data={emails}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator={false}
-                ListHeaderComponent={() => <ListDivider />}
-                ListFooterComponent={() => <ListDivider />}
-                ItemSeparatorComponent={() => <ListDivider />}
-            />
-        </View>
+        <LinearGradient
+            colors={['#1C1C1C', '#363636']}
+            style={{ flex: 1 }}
+        >
+            <View style={{ marginTop: 40 }}>
+                <FlatList
+                    data={emails}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                    showsVerticalScrollIndicator={false}
+                    ListHeaderComponent={() => <ListDivider />}
+                    ListFooterComponent={() => <ListDivider />}
+                    ItemSeparatorComponent={() => <ListDivider />}
+                />
+            </View>
+        </LinearGradient>
     );
 }

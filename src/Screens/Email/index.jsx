@@ -1,57 +1,50 @@
-/* import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, View, Text, StatusBar } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import { ListDivider } from '../../Components/ListDivider/ListDivider';
 
+import { AntDesign } from '@expo/vector-icons';
+
 import { styles } from './styles';
 
-export default function FlatEmails() {
+export default function Email({ route }) {
 
-    const [emails, setEmails] = useState([]);
+    const { id } = route.params;
 
-    useEffect(function () {
+    const [email, setEmail] = useState([]);
+
+    useEffect(() => {
         async function getData() {
-            const response = await fetch('https://mobile.ect.ufrn.br:3002/emails');
-            const emailsServidor = await response.json();
-            console.log(emailsServidor)
-            setEmails(emailsServidor)
+            const response = await fetch('https://mobile.ect.ufrn.br:3002/emails/' + id);
+            const email = await response.json();
+            setEmail(email)
         }
         getData();
-    }, [])
-
-    function renderItem({ item }) {
-        return (
-            <LinearGradient>
-                <View style={styles.container}>
-                    <View>
-                        <View style={{ flexDirection: 'row', padding: 10 }}>
-                            <Image style={styles.image} source={{ uri: item.picture }} />
-                            <View style={{ flexDirection: 'column' }}>
-                                <Text style={styles.to}> {item.to} </Text>
-                                <Text style={styles.to}> {item.tittle} </Text>
-                            </View>
-                            <Text style={styles.time}>{item.time}</Text>
-                        </View>
-                    </View>
-                </View>
-            </LinearGradient>
-        );
-    }
+    }, []);
 
     return (
-
-        <View style={{ marginTop: 30 }}>
-            <FlatList
-                data={emails}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                showsVerticalScrollIndicator={false}
-                ListHeaderComponent={() => <ListDivider />}
-                ListFooterComponent={() => <ListDivider />}
-                ItemSeparatorComponent={() => <ListDivider />}
-            />
-        </View>
-
+        <LinearGradient
+            colors={['#1C1C1C', '#363636']}
+            style={{ flex: 1 }}
+        >
+            <View style={styles.container}>
+                <StatusBar style="auto" />
+                <View>
+                    <Text style={styles.box} >Caixa de Entrada</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={styles.title}>{email.tittle}</Text>
+                        <AntDesign name={email.star ? "star" : "staro"} size={20} color="white" />
+                    </View>
+                    <View style={styles.header}>
+                        <Image style={styles.image} source={{ uri: email.picture }} />
+                        <View style={{ flexDirection: 'column' }}>
+                            <Text style={styles.to}> {email.from} </Text>
+                        </View>
+                        <Text style={styles.time}>{email.time}</Text>
+                    </View>
+                </View>
+            </View>
+        </LinearGradient>
     );
-} */
+}
