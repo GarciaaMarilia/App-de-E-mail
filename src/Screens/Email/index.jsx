@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import { FlatList, Image, View, Text } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
@@ -54,4 +54,4 @@ export default function FlatEmails() {
         </View>
 
     );
-}
+} */

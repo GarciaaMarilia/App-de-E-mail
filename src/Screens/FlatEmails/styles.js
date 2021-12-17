@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
 
     header: {
         flexDirection: 'row',
+        padding: 10
     },
 
     time: {
