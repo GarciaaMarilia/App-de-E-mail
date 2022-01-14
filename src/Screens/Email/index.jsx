@@ -77,7 +77,7 @@ export default function Email({ route, navigation }) {
             </View>
 
             <WebView
-                style={styles.webview}
+                originWhitelist={['*']}
                 source={{ html: `<div style="font-size: 50px;">${email.body}</div>` }}
             />
 
